@@ -8,6 +8,9 @@ class AssignmentQuery extends ApiFilter {
       'subject_id' => ['eq'],
       'class_type_id' => ['eq'],
       'due_date' => ['eq'],
+      'term_id' => ['eq'],
+      'academic_session_id' => ['eq'],
+      'assignment_status' => ['eq'],
     ];
 
 }

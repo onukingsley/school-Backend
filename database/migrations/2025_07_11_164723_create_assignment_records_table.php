@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('assignment_records', function (Blueprint $table) {
             $table->id();
             $table->string('term');
+            $table->string('score');
+            $table->foreignId('assignment_id');
+            $table->foreignId('student_id');
+            $table->foreignId('session_id');
             $table->timestamps();
         });
     }

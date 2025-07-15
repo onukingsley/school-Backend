@@ -10,7 +10,7 @@ class Results extends Model
     /** @use HasFactory<\Database\Factories\ResultsFactory> */
     use HasFactory;
 
-    protected $fillable = ['student_id','subject_id','class_type_id','term_id','academic_session_id','level','grade_id','test1','test2','assignment1','assignment2','total','exam'];
+    protected $fillable = ['student_id','subject_id','class_type_id','term_id','academic_session_id','level','grade_scale_id','test1','test2','assignment1','assignment2','total','exam'];
 
     public function student (){
         return $this->belongsTo(Student::class);

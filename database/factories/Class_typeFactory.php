@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Class_type>
  */
-class ClassTypeFactory extends Factory
+class Class_typeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,11 @@ class ClassTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'class_name' => $this->faker->title,
+            'number_of_students'=> $this->faker->numberBetween(20,50),
+            'class_type' => $this->faker->randomElement(['junior','senior']),
+            'subject' => $this->faker->title,
+            'staff_id' => $this->faker->numberBetween(1,28)
         ];
     }
 }

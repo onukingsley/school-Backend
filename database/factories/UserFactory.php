@@ -27,6 +27,11 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'profile_image' => $this->faker->title,
+            'date_of_birth' => $this->faker->dateTime(),
+            'address' => $this->faker->address,
+            'user_type' => $this->faker->numberBetween(1,3),
+            'reg_no' => $this->faker->unique()->swiftBicNumber,
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];

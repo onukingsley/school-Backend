@@ -39,7 +39,7 @@ class Staff extends Model
     public function ExamTable (){
         return $this->hasMany(ExamTable::class);
     }
-    public function SubjectCode (){
+    public function Subject (){
         return $this->hasMany(Subject::class);
     }
 

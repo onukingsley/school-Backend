@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('academic_session_id')->constrained();
             $table->foreignId('term_id')->constrained();
             $table->string('title');
+            $table->string('assignment_status'); //assignment1 or assignment2
             $table->string('content');
             $table->string('due_date');
             $table->timestamps();

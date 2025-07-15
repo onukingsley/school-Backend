@@ -10,7 +10,14 @@ class Attendance extends Model
     /** @use HasFactory<\Database\Factories\AttendanceFactory> */
     use HasFactory;
 
-    protected $fillable = ['student_id','class_id','attendance','academic_session_id','term_id'];
+    protected $fillable = ['student_id','class_type_id','attendance','academic_session_id','term_id'];
+
+    public function casts(): array
+    {
+        return [
+          'attendance'=> 'boolean'
+        ];
+    }
 
     public function Student(){
         return $this->belongsTo(Student::class);

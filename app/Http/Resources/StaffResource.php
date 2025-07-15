@@ -23,7 +23,7 @@ class StaffResource extends JsonResource
             'staffRole' => new StaffRoleResource($this->whenLoaded('StaffRole')),
             'timeTable' => new TimeTableCollection($this->whenLoaded('TimeTable')),
             'examTable' => new ExamCollection($this->whenLoaded('ExamTable')),
-            'subjectCode' => new SubjectCollection($this->whenLoaded('SubjectCode')),
+            'subjectCode' => new SubjectCollection($this->whenLoaded('Subject')),
         ];
     }
 }

@@ -40,23 +40,28 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);*/
-        Payment::factory(50);
-        GradeScale::factory(5);
-        Dues::factory(5);
-        StaffRole::factory(5);
-        Session::factory(5)->has(Term::factory(3));
+        Payment::factory(50)->create();
+        GradeScale::factory(5)->create();
+        Dues::factory(5)->create();
+        StaffRole::factory(5)->create();
+        //Session::factory(5)->has(Term::factory(3));
+        Session::factory(10)->create();
+        Term::factory(3)->create();
 
 
-        User::factory(30)->has(Guardian::factory());
-        User::factory(90)->has(Student::factory());
-        User::factory(8)->has(Staff::factory()->has(Class_type::factory()));
-        User::factory(20)->has(Staff::factory()->has(Subject::factory($this->random(1,3))));
 
-        Attendance::factory(200);
-        SchoolInfo::factory(1);
-        SchoolFees::factory(200);
-        SalaryPayment::factory(200);
-        Results::factory(200);
+        User::factory(30)->has(Guardian::factory())->create();
+
+        User::factory(20)->has(Staff::factory()->has(Subject::factory($this->random(1,3))))->create();
+        User::factory(8)->has(Staff::factory())->create();
+        Class_type::factory(10)->create();
+        User::factory(90)->has(Student::factory())->create();
+
+        Attendance::factory(200)->create();
+        //SchoolInfo::factory(1)->create();
+        SchoolFees::factory(200)->create();
+        SalaryPayment::factory(200)->create();
+        Results::factory(200)->create();
 
 
 

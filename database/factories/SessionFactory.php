@@ -17,7 +17,7 @@ class SessionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'year' => $this->faker->numberBetween(2010,2026)
         ];
     }
 }

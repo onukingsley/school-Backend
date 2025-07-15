@@ -12,12 +12,16 @@ class Subject extends Model
 
     protected $fillable =['staff_id','description','scheme_of_work','title','class_list'];
 
-    public function casts(): array
+   /* public function casts(): array
     {
         return [
           'class_list'=> 'array'
         ];
-    }
+    }*/
+
+    protected $casts = [
+        'class_list' => 'array',
+    ];
 
     public function Staff(){
         return $this->belongsTo(Staff::class);

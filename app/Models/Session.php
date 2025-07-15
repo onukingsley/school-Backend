@@ -11,6 +11,7 @@ class Session extends Model
     use HasFactory;
 
     protected $fillable = ['year'];
+    protected $table = 'academic_sessions';
 
     public function Student(){
         return $this->hasMany(Student::class);

@@ -17,7 +17,8 @@ class StaffRoleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'role' => $this->faker->randomElement(['teaching','non-teaching']),
+            'description' => $this->faker->paragraph(1)
         ];
     }
 }

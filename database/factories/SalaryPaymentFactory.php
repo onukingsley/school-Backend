@@ -17,7 +17,14 @@ class SalaryPaymentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'staff_id' => $this->faker->numberBetween(1,28),
+            'dues_id' => $this->faker->numberBetween(1,5),
+            'transaction_type' => $this->faker->randomElement(['schoolFees','PTSA','HostelFees']),
+            'amount' => $this->faker->numberBetween(1,5),
+            'transaction_id' => $this->faker->uuid,
+            'name' => $this->faker->name,
+
+
         ];
     }
 }

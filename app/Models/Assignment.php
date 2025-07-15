@@ -10,7 +10,7 @@ class Assignment extends Model
     /** @use HasFactory<\Database\Factories\AssignmentFactory> */
     use HasFactory;
 
-    protected $fillable = ['subject_id','class_type_id','title','content','due_date'];
+    protected $fillable = ['subject_id','class_type_id','title','content','due_date','term_id','academic_session_id', 'assignment_status'];
 
     public function Subject(){
         return $this->belongsTo(Subject::class);
@@ -18,6 +18,13 @@ class Assignment extends Model
 
     public function ClassType(){
         return $this->belongsTo(Class_type::class);
+    }
+
+    public function term(){
+        return $this->belongsTo(Term::class);
+    }
+    public function academicSession(){
+        return $this->belongsTo(Session::class);
     }
 
 

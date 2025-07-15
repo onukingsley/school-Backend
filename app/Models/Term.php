@@ -10,7 +10,8 @@ class Term extends Model
     /** @use HasFactory<\Database\Factories\TermFactory> */
     use HasFactory;
 
-    protected $fillable = ['name','academic_session_id'];
+    /*protected $fillable = ['name','academic_session_id'];*/
+    protected $fillable = ['name'];
 
 
     public function Attendance(){

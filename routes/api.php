@@ -60,4 +60,14 @@ Route::post('/register',[UserController::class,'register']);
 Route::post('/logout',[UserController::class,'logout'])->middleware('auth:sanctum');
 Route::get('/user',[UserController::class,'getuser'])->middleware('auth:sanctum');
 
+/*
+ * Custom EndPoints
+ * getPendingAssignment
+ * getStudentOrResult for result-sheet
+ * upsertToDB update Result from Database
+ * */
+Route::get('/getPendingAssignment',[ResultsController::class,'getPendingAssignment'])->middleware('auth:sanctum');
+Route::get('/getStudentOrResult',[ResultsController::class,'getStudentOrResult'])->middleware('auth:sanctum');
+Route::post('/upsertToDB',[ResultsController::class,'upsertToDB'])->middleware('auth:sanctum');
+
 

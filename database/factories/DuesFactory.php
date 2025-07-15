@@ -17,7 +17,8 @@ class DuesFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title'=>$this->faker->title,
+            'amount'=>$this->faker->numberBetween(0,100),
         ];
     }
 }
