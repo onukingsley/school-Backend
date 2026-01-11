@@ -32,7 +32,8 @@ class AssignmentController extends Controller
 
         $assignment = $assignment->with($include);
 
-        return new AssignmentCollection($assignment->latest()->paginate()->appends($request->query()));
+        return response()->json($assignment->latest()->paginate(10)->appends($request->query()));
+        //return new AssignmentCollection($assignment->latest()->paginate(10)->appends($request->query()));
 
 
     }
@@ -69,8 +70,9 @@ class AssignmentController extends Controller
             $include[] = 'Subject';
         }
 
-        $assignment = $assignment->with($include);
-        return response()->json(new AssignmentResource($assignment),200);
+        $assignment = $assignment->loadMissing($include);
+        //return response()->json(new AssignmentResource($assignment),200);
+        return response()->json($assignment,200);
 
     }
 

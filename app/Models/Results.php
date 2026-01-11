@@ -21,7 +21,7 @@ class Results extends Model
     }
 
     public function classType(){
-        return $this->belongsTo(Class_type::class);
+        return $this->belongsTo(ClassType::class);
     }
 
     public function term(){
@@ -29,7 +29,7 @@ class Results extends Model
     }
 
 
-    public function grade(){
+    public function gradeScale(){
         return $this->belongsTo(GradeScale::class);
     }
 

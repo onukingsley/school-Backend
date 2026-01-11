@@ -45,6 +45,46 @@ class AttendanceController extends Controller
 
     }
 
+
+    public function getAttendance(Request $request){
+        $req = $request->all();
+
+
+        $baseRequest = [];
+
+        if (isset($req['student_id'])){
+            $baseRequest[] = ['student_id', $req['student_id']];
+        }
+        if (isset($req['class_type_id'])){
+            $baseRequest[] = ['class_type_id', $req['class_type_id']];
+        }
+        if (isset($req['academic_session_id'])){
+            $baseRequest[] = ['academic_session_id', $req['academic_session_id']];
+        }if (isset($req['term_id'])){
+            $baseRequest[] = ['term_id', $req['term_id']];
+        }
+
+        try {
+            /*get total attendance, missing Attendance, and attendance by term*/
+            $totalTermAttendance  = Attendance::where($baseRequest)->count();
+            $missingAttendance  = Attendance::where($baseRequest)->where('attendance',0)->count();
+            $attended  = Attendance::where($baseRequest)->where('attendance',1)->count();
+
+            return response()->json([
+                'attended'=>$attended,
+                'missingAttendance' => $missingAttendance,
+                'totalAttendance' => $totalTermAttendance
+            ],200);
+
+        }catch (\Exception $exception){
+            return response()->json([
+                'Error' => $exception->getMessage()
+            ],500);
+        }
+
+
+    }
+
     /**
      * Show the form for creating a new resource.
      */

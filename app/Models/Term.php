@@ -11,11 +11,14 @@ class Term extends Model
     use HasFactory;
 
     /*protected $fillable = ['name','academic_session_id'];*/
-    protected $fillable = ['name'];
+    protected $fillable = ['name','current_term'];
 
 
     public function Attendance(){
         return $this->hasMany(Attendance::class);
+    }
+    public function StaffAttendance(){
+        return $this->hasMany(StaffAttendance::class);
     }
     public function AcademicSession(){
         return $this->belongsTo(Session::class);
@@ -39,6 +42,9 @@ class Term extends Model
 
     public function ExamTable(){
         return $this->hasMany(ExamTable::class);
+    }
+    public function Scheme(){
+        return $this->hasMany(SchemeModel::class);
     }
 
 }

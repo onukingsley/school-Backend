@@ -25,20 +25,22 @@ class UserController extends Controller
 
         $include = [];
 
-        if ($request->has('Staff')){
+        if ($request['staff']){
             $include[] = 'Staff';
         }
-        if ($request->has('Student')){
+        if ($request['student']){
             $include[] = 'Student';
         }
-        if ($request->has('Guardian')){
+        if ($request['guardian']){
             $include[] = 'Guardian';
         }
 
 
         $user = $user->with($include);
 
-        return new UserCollection($user->latest()->paginate()->appends($request->query()));
+        return response()->json($user->latest()->paginate(10)->appends($request->query()),200);
+
+        //return response()->json($user->latest()->paginate(10)->appends($request->query()));
 
 
     }
@@ -60,13 +62,23 @@ class UserController extends Controller
         }
     }
     public function getuser(Request $request){
-        return \response()->json($request->user());
+        $payload = $request->all();
+
+        if ($request->has('id')){
+            $user = User::where('id',$payload['id'])->with(['Student','Staff'])->get();
+        }
+        else{
+            $user = $request->user();;
+        }
+
+        return \response()->json($user);
     }
 
     public function login(Request $request){
 
         $username = $request->username;
         $password = $request->password;
+
 
         $user = User::where('email',$username )->orwhere('reg_no',$username)->first();
 
@@ -146,25 +158,25 @@ class UserController extends Controller
     public function show(User $user, Request $request)
     {
         $include = [];
-        if ($request->has('classType')){
+        if ($request['classType']){
             $include[] = 'ClassType';
         }
-        if ($request->has('Subject')){
+        if ($request['subject']){
             $include[] = 'Subject';
         }
-        if ($request->has('Staff')){
+        if ($request['staff']){
             $include[] = 'Staff';
         }
-        if ($request->has('Term')){
+        if ($request['term']){
             $include[] = 'Term';
         }
-        if ($request->has('AcademicSession')){
+        if ($request['academicSession']){
             $include[] = 'AcademicSession';
         }
 
 
-        $user = $user->with($include);
-        return response()->json(new UserResource($user),200);
+        $user = $user->loadMissing($include);
+        return response()->json($user,200);
 
     }
 

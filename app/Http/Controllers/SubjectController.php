@@ -78,8 +78,9 @@ class SubjectController extends Controller
             $include[] = 'Subject';
         }
 
-        $subject = $subject->with($include);
-        return response()->json(new SubjectResource($subject),200);
+        $subject = $subject->loadMissing($include);
+        return response()->json($subject,200);
+        //return response()->json(new SubjectResource($subject),200);
 
     }
 

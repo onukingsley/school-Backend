@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('class_types', function (Blueprint $table) {
+        Schema::create('week_models', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('staff_id')->constrained();
-            $table->string('class_name');
-            $table->string('number_of_students');
-            $table->string('class_type_name');
-            $table->json('subject');
+            $table->string('wk');
+            $table->string('currentWeek');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('class_types');
+        Schema::dropIfExists('week_models');
     }
 };

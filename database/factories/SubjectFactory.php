@@ -16,15 +16,15 @@ class SubjectFactory extends Factory
      */
     public function definition(): array
     {
-        $class_list = ['maths','english','physics','computer'];
+
         return [
            'description' => $this->faker->paragraph(1),
            'scheme_of_work' => $this->faker->paragraph(2),
             'title' => $this->faker->title,
             'class_list' => [
-                $class_list[$this->faker->numberBetween(0, 3)],
-                $class_list[$this->faker->numberBetween(0, 3)],
-                $class_list[$this->faker->numberBetween(0, 3)],
+                $this->faker->numberBetween(0, 10),
+                $this->faker->numberBetween(0, 10),
+                $this->faker->numberBetween(0, 10),
             ],
             ];
     }

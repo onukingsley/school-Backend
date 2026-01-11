@@ -20,7 +20,7 @@ class timetable extends Model
     }
 
     public function ClassType(){
-        return $this->belongsTo(Class_type::class,'class_type_id');
+        return $this->belongsTo(ClassType::class,'class_type_id');
     }
     public function Subject(){
         return $this->belongsTo(Subject::class);

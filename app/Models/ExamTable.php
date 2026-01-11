@@ -20,7 +20,7 @@ class ExamTable extends Model
     }
 
     public function ClassType(){
-        return $this->belongsTo(Class_type::class);
+        return $this->belongsTo(ClassType::class);
     }
 
     public function Subject(){

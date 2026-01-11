@@ -41,6 +41,11 @@ class Subject extends Model
         return $this->hasMany(ExamTable::class);
     }
 
+    public function Scheme(){
+        return $this->hasMany(SchemeModel::class);
+    }
+
+
 
 
 

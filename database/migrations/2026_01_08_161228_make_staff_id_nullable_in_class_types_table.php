@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('terms', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('current_term')->default('0');
-           // $table->foreignId('academic_session_id')->constrained();
-            $table->timestamps();
+        Schema::table('class_types', function (Blueprint $table) {
+            //
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('terms');
+        Schema::table('class_types', function (Blueprint $table) {
+            //
+        });
     }
 };

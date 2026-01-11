@@ -27,8 +27,17 @@ return new class extends Migration
             $table->string('total')->nullable();
             $table->string('exam')->nullable();
             $table->timestamps();
+
+
+            //this tells the model "This combination of values should be unique." so it can be used to upsert
+            $table->unique(
+                ['student_id', 'subject_id', 'class_type_id', 'term_id', 'academic_session_id'],
+                'unique_result_entry'
+            );
+
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -36,5 +45,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('results');
+        Schema::table('results', function (Blueprint $table) {
+            $table->dropUnique('unique_result_entry');
+        });
     }
 };

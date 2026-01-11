@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Class_type extends Model
+class ClassType extends Model
 {
     /** @use HasFactory<\Database\Factories\ClassTypeFactory> */
     use HasFactory;
 
-    protected $fillable = ['staff_id','class_name','number_of_students','class_type','subject'];
+    protected $fillable = ['staff_id','class_name','number_of_students','class_type_name','subject'];
 
-    public function casts(): array
-    {
-        return [
-            'subject' => 'array'
-        ];
-    }
+
+
+    protected $casts = [
+        'subject' => 'array',
+    ];
+
 
     public function Staff(){
         return $this->belongsTo(Staff::class);

@@ -16,8 +16,13 @@ class ResultsCheckFactory extends Factory
      */
     public function definition(): array
     {
+        $staus = ['expired','valid'];
         return [
-            //
+            'dues_id' => 1,
+            'token' => $this->faker->uuid,
+            'number_of_attempts' => $this->faker->numberBetween(0,5),
+            'status' => $staus[$this->faker->numberBetween(0,1)],
+
         ];
     }
 }

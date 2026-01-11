@@ -23,34 +23,77 @@ class StudentController extends Controller
 
         $include = [];
 
-        if ($request->has('User')){
+        if ($request['user']){
             $include[] = 'User';
         }
-        if ($request->has('Guardian')){
+        if ($request['guardian']){
             $include[] = 'Guardian';
         }
-        if ($request->has('ClassType')){
+        if ($request['classType']){
             $include[] = 'ClassType';
         }
-        if ($request->has('AcademicSession')){
+        if ($request['academicSession']){
             $include[] = 'AcademicSession';
         }
-        if ($request->has('Attendance')){
+        if ($request['attendance']){
             $include[] = 'Attendance';
         }
-        if ($request->has('Schoolfees')){
+        if ($request['schoolFees']){
             $include[] = 'Schoolfees';
         }
-        if ($request->has('Result')){
+        if ($request['result']){
             $include[] = 'Result';
         }
-        if ($request->has('ResultCheck')){
+        if ($request['resultCheck']){
             $include[] = 'ResultCheck';
         }
 
         $student = $student->with($include);
 
-        return new StudentCollection($student->latest()->paginate()->appends($request->query()));
+
+        return response()->json($student->latest()->paginate(10)->appends($request->query()),200);
+
+        //return  StudentResource::collection($student->paginate(10)->appends($request->query()));
+
+
+    }
+
+    public function getStudent(Request $request){
+        $payload = $request->all();
+
+        $student = Student::where('user_id', $payload['user_id']);
+
+        $include = [];
+
+        if ($request['user']){
+            $include[] = 'User';
+        }
+        if ($request['guardian']){
+            $include[] = 'Guardian';
+        }
+        if ($request['classType']){
+            $include[] = 'ClassType';
+        }
+        if ($request['academicSession']){
+            $include[] = 'AcademicSession';
+        }
+        if ($request['attendance']){
+            $include[] = 'Attendance';
+        }
+        if ($request['schoolFees']){
+            $include[] = 'Schoolfees';
+        }
+        if ($request['result']){
+            $include[] = 'Result';
+        }
+        if ($request['resultCheck']){
+            $include[] = 'ResultCheck';
+        }
+
+        $student = $student->with($include)->first();
+
+        return response()->json($student,200);
+
 
 
     }
@@ -80,33 +123,36 @@ class StudentController extends Controller
     public function show(Student $student, Request $request)
     {
         $include = [];
-        if ($request->has('User')){
+        if ($request['user']){
             $include[] = 'User';
         }
-        if ($request->has('Guardian')){
+        if ($request['guardian']){
             $include[] = 'Guardian';
         }
-        if ($request->has('ClassType')){
+        if ($request['classType']){
             $include[] = 'ClassType';
         }
-        if ($request->has('AcademicSession')){
+        if ($request['academicSession']){
             $include[] = 'AcademicSession';
         }
-        if ($request->has('Attendance')){
+        if ($request['attendance']){
             $include[] = 'Attendance';
         }
-        if ($request->has('Schoolfees')){
+        if ($request['schoolFees']){
             $include[] = 'Schoolfees';
         }
-        if ($request->has('Result')){
+        if ($request['result']){
             $include[] = 'Result';
         }
-        if ($request->has('ResultCheck')){
+        if ($request['resultCheck']){
             $include[] = 'ResultCheck';
         }
 
-        $assignment = $student->with($include);
-        return response()->json(new StudentResource($student),200);
+
+        $student = $student->loadMissing($include);
+
+        return response()->json($student,200);
+        //return response()->json(new StudentResource($student),200);
 
     }
 

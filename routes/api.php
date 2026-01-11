@@ -3,6 +3,8 @@
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ClassTypeController;
+use App\Http\Controllers\CustomStaffController;
+use App\Http\Controllers\CustomStudentController;
 use App\Http\Controllers\DuesController;
 use App\Http\Controllers\ExamTableController;
 use App\Http\Controllers\GradeScaleController;
@@ -30,7 +32,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::group(['prefix'=>'v1','middleware'=>'auth:sanctum'],function(){
+Route::group(['prefix'=>'v1'/*,'middleware'=>'auth:sanctum'*/],function(){
     Route::apiResource('assignment',AssignmentController::class);
     Route::apiResource('attendance',AttendanceController::class);
     Route::apiResource('classType',ClassTypeController::class);
@@ -55,10 +57,12 @@ Route::group(['prefix'=>'v1','middleware'=>'auth:sanctum'],function(){
     Route::apiResource('users',UserController::class);
 });
 
-Route::post('/login',[UserController::class,'login']);
-Route::post('/register',[UserController::class,'register']);
-Route::post('/logout',[UserController::class,'logout'])->middleware('auth:sanctum');
-Route::get('/user',[UserController::class,'getuser'])->middleware('auth:sanctum');
+Route::post('v1/login',[UserController::class,'login']);
+Route::post('v1/register',[UserController::class,'register']);
+Route::post('v1/logout',[UserController::class,'logout'])->middleware('auth:sanctum');
+Route::get('v1/user',[UserController::class,'getuser'])->middleware('auth:sanctum');
+Route::get('v1/getStudentDetail',[StudentController::class,'getStudent'])->middleware('auth:sanctum');
+Route::get('v1/getSubject',[ClassTypeController::class,'getSubject'])->middleware('auth:sanctum');
 
 /*
  * Custom EndPoints
@@ -66,8 +70,21 @@ Route::get('/user',[UserController::class,'getuser'])->middleware('auth:sanctum'
  * getStudentOrResult for result-sheet
  * upsertToDB update Result from Database
  * */
-Route::get('/getPendingAssignment',[ResultsController::class,'getPendingAssignment'])->middleware('auth:sanctum');
-Route::get('/getStudentOrResult',[ResultsController::class,'getStudentOrResult'])->middleware('auth:sanctum');
-Route::post('/upsertToDB',[ResultsController::class,'upsertToDB'])->middleware('auth:sanctum');
+Route::get('v1/getPendingAssignment',[ResultsController::class,'getPendingAssignment']);
+Route::get('v1/getStudentOrResult',[ResultsController::class,'getStudentOrResult']);
+Route::get('v1/getCurrentTermAndSession',[SessionController::class,'getCurrentTermAndSession']);
+Route::get('v1/getAttendance',[AttendanceController::class,'getAttendance']);
+Route::post('v1/upsertToDB',[ResultsController::class,'upsertToDB']);
+Route::get('v1/getClassType',[ClassTypeController::class,'getClassType']);
+Route::get('v1/getTestAndAssignmentData',[ResultsController::class,'getTestAndAssignmentData']);
+Route::get('v1/getComparisonData',[ResultsController::class,'getComparisonData']);
+Route::get('v1/getStudentResult',[ResultsController::class,'getStudentResult']);
+
+
+
+
+/*for Staff endPoints*/
+Route::get('v1/getStaffOverview',[CustomStaffController::class,'getIndexOverview']);
+Route::get('v1/getStudentOverview',[CustomStudentController::class,'studentOverview']);
 
 

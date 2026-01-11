@@ -17,7 +17,7 @@ class ClassTypeResource extends JsonResource
         return [
             'className' => $this->class_name,
             'numberOfStudents' => $this->number_of_students,
-            'classType' => $this->class_type,
+            'classType' => $this->class_type_name,
             'subject'=> $this->subject,
             'staff' => new StaffResource($this->whenLoaded('Staff')),
             'exam' => new ExamCollection($this->whenLoaded('Exam')),

@@ -2,13 +2,16 @@
 
 namespace Database\Seeders;
 
+use App\Models\Assignment;
 use App\Models\Attendance;
 use App\Models\Class_type;
+use App\Models\ClassType;
 use App\Models\Dues;
 use App\Models\GradeScale;
 use App\Models\Guardian;
 use App\Models\Payment;
 use App\Models\Results;
+use App\Models\ResultsCheck;
 use App\Models\SalaryPayment;
 use App\Models\SchoolFees;
 use App\Models\SchoolInfo;
@@ -34,13 +37,21 @@ class DatabaseSeeder extends Seeder
     }
     public function run(): void
     {
+
+        {
+            $this->call([
+                TestSeeder::class,
+            ]);
+        }
         // User::factory(10)->create();
 
        /* User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);*/
-        Payment::factory(50)->create();
+
+
+      /*  Payment::factory(50)->create();
         GradeScale::factory(5)->create();
         Dues::factory(5)->create();
         StaffRole::factory(5)->create();
@@ -54,7 +65,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory(20)->has(Staff::factory()->has(Subject::factory($this->random(1,3))))->create();
         User::factory(8)->has(Staff::factory())->create();
-        Class_type::factory(10)->create();
+        ClassType::factory(10)->create();
         User::factory(90)->has(Student::factory())->create();
 
         Attendance::factory(200)->create();
@@ -62,8 +73,12 @@ class DatabaseSeeder extends Seeder
         SchoolFees::factory(200)->create();
         SalaryPayment::factory(200)->create();
         Results::factory(200)->create();
+        Assignment::factory(200)->create();
 
 
+
+
+        ResultsCheck::factory(30)->create();*/
 
     }
 }

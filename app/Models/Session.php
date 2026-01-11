@@ -21,6 +21,10 @@ class Session extends Model
         return $this->hasMany(Attendance::class);
     }
 
+    public function StaffAttendance(){
+        return $this->hasMany(StaffAttendance::class);
+    }
+
     public function SchoolFees(){
         return $this->hasMany(SchoolFees::class);
     }

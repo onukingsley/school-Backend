@@ -23,22 +23,23 @@ class SchoolFeesController extends Controller
 
         $include = [];
 
-        if ($request->has('Student')){
+        if ($request['Student']){
             $include[] = 'Student';
         }
-        if ($request->has('Dues')){
+        if ($request['Dues']){
             $include[] = 'Dues';
         }
-        if ($request->has('AcademicSession')){
+        if ($request['AcademicSession']){
             $include[] = 'AcademicSession';
         }
-        if ($request->has('Term')){
+        if ($request['Term']){
             $include[] = 'Term';
         }
 
         $schoolFees = $schoolFees->with($include);
 
-        return new SchoolFeesCollection($schoolFees->latest()->paginate()->appends($request->query()));
+        return response()->json(($schoolFees->latest()->paginate()->appends($request->query())),200);
+       // return new SchoolFeesCollection($schoolFees->latest()->paginate()->appends($request->query()));
 
 
     }
